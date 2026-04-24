@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caspar Pfrunder — Jurist and Historian</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --ink: #1a1a18;
+    --ink-mid: #4a4a46;
+    --ink-light: #8a8a84;
+    --rule: #d8d6ce;
+    --bg: #faf9f6;
+    --bg-warm: #f3f1eb;
+    --accent: #2d4a3e;
+    --accent-light: #e8ede9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--rule);
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 55%;
+    height: 120%;
+    background: var(--bg-warm);
+    transform: skewX(-4deg);
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+
+  .hero-credentials {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .credential-pill {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  section {
+    padding: 6rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 400;
+    margin-bottom: 3rem;
+    line-height: 1.15;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--ink);
+    margin: 1.5rem 0 3rem;
+  }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .bio-text p {
+    color: var(--ink-mid);
+    margin-bottom: 1.25rem;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .fields-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .field-card {
+    border-top: 1.5px solid var(--ink);
+    padding-top: 1.25rem;
+  }
+
+  .field-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .field-card-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .field-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .field-items li {
+    font-size: 13px;
+    color: var(--ink-mid);
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .field-items li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-light);
+    font-size: 11px;
+    top: 3px;
+  }
+
+  .cv-section { background: var(--bg-warm); }
+
+  .cv-section > div {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .cv-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cv-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 0.5px solid var(--rule);
+  }
+
+  .cv-item:first-child { border-top: 0.5px solid var(--rule); }
+
+  .cv-year {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+    padding-top: 3px;
+  }
+
+  .cv-role {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+  }
+
+  .cv-place {
+    font-size: 13px;
+    color: var(--ink-mid);
+  }
+
+  .writing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .writing-card {
+    border: 0.5px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.5rem;
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+
+  .writing-card:hover { border-color: var(--ink-mid); }
+
+  .writing-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .writing-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .writing-meta {
+    font-size: 12px;
+    color: var(--ink-light);
+  }
+
+  .contact-section {
+    text-align: center;
+    padding: 6rem 3rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-email {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .contact-email:hover { opacity: 0.65; }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .contact-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-links a:hover { color: var(--ink); }
+
+  footer {
+    border-top: 0.5px solid var(--rule);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--ink-light);
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.25s; }
+  .fade-in:nth-child(3) { animation-delay: 0.4s; }
+  .fade-in:nth-child(4) { animation-delay: 0.55s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Caspar Pfrunder —</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#fields">Fields</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow fade-in">St. Gallen — Zürich — Oxford</p>
+    <h1 class="hero-name fade-in">Caspar<br>Pfrunder</h1>
+    <p class="hero-title fade-in">Jurist and Historian of Ideas,<br>Culture and Political Economy</p>
+    <div class="hero-credentials fade-in">
+      <span class="credential-pill">Dr. des. rer. soc. (HSG)</span>
+      <span class="credential-pill">MPhil (Oxon)</span>
+      <span class="credential-pill">MLaw (HSG)</span>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <p class="section-label">About</p>
+  <div class="bio-grid">
+    <div>
+      <h2 class="section-title">Jurist and<br>Historian</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="bio-text">
+      <p>I am a jurist and historian working at the intersection of legal theory, intellectual history, and political economy. My work traces how ideas, institutions, technology and culture shape societies and how knowledge about nature and man is produced — from antiquity to the present day.</p>
+      <p>My doctoral dissertation, defended at the University of St. Gallen in 2025, analyzes the emergence and spread of constitutionalism as a global phenomenon. It spans antiquity to modernity with comparative cases in the United Kingdom, United States, France, and Switzerland.</p>
+      <p>I hold a Dr. des. rer. soc. from the University of St. Gallen, an MPhil in Modern European History from the University of Oxford, and am completing a Master of Laws at HSG.</p>
+    </div>
+  </div>
+</section>
+
+<section id="fields">
+  <p class="section-label">Fields</p>
+  <h2 class="section-title">Law and History</h2>
+  <div class="fields-grid">
+    <div class="field-card">
+      <p class="field-card-label">Law — I</p>
+      <h3 class="field-card-title">Innovation, Risk and Information Law</h3>
+      <ul class="field-items">
+        <li>Intellectual property and patent law</li>
+        <li>Risk law and environmental law</li>
+        <li>Data protection and information law</li>
+        <li>Science, technology, and the law</li>
+      </ul>
+    </div>
+    <div class="field-card">
+      <p class="field-card-label">Law — II</p>
+      <h3 class="field-card-title">Finance, Corporate and Tax Law</h3>
+      <ul class="field-items">
+        <li>Company and corporate law</li>
+        <li>European and U.S. financial law</li>
+        <li>Capital markets regulation</li>
+        <li>Public finance, tax law and fiscal policy</li>
+      </ul>
+    </div>
+    <div class="field-card">
+      <p class="field-card-label">Law — III</p>
+      <h3 class="field-card-title">Constitutional, State and International Law</h3>
+      <ul class="field-items">
+        <li>Constitutional history and theory</li>
+        <li>Comparative constitutional law</li>
+        <li>Public international law, IHL and human rights</li>
+        <li>Swiss neutrality and foreign policy</li>
+      </ul>
+    </div>
+    <div class="field-card">
+      <p class="field-card-label">History — I</p>
+      <h3 class="field-card-title">European Cultural History</h3>
+      <ul class="field-items">
+        <li>Early modern and modern Europe and European empires</li>
+        <li>Antiquity as a framework of reference</li>
+        <li>History of republicanism, democracy and the rule of law</li>
+        <li>History of literature, music and art</li>
+      </ul>
+    </div>
+    <div class="field-card">
+      <p class="field-card-label">History — II</p>
+      <h3 class="field-card-title">Intellectual History and History of Science</h3>
+      <ul class="field-items">
+        <li>History of ideas and concepts</li>
+        <li>Scientific revolution and demarcation of science</li>
+        <li>Philosophy of history, history of philosophy and historicism</li>
+        <li>History of biology and the life sciences</li>
+        <li>Hermeneutics, interpretation theory and philosophy of language</li>
+      </ul>
+    </div>
+    <div class="field-card">
+      <p class="field-card-label">History — III</p>
+      <h3 class="field-card-title">Legal and Economic History</h3>
+      <ul class="field-items">
+        <li>European legal history</li>
+        <li>History of constitutionalism and subjective rights</li>
+        <li>Political economy and institutions</li>
+        <li>History of economic thought, accounting and legal philosophy</li>
+        <li>History of manufacturing, management and finance</li>
+      </ul>
+    </div>
+    <div class="field-card">
+      <p class="field-card-label">History — IV</p>
+      <h3 class="field-card-title">Comparative and Global History and Legal Anthropology</h3>
+      <ul class="field-items">
+        <li>Islamic, Jewish, East and Southeast Asian history</li>
+        <li>Ethiopia and Southern Africa</li>
+        <li>Cross-cultural comparison</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="cv-section" id="cv">
+  <div>
+    <p class="section-label">Curriculum Vitae</p>
+    <h2 class="section-title">Education and Experience</h2>
+    <div class="cv-timeline">
+      <div class="cv-item">
+        <span class="cv-year">2027–2028</span>
+        <div>
+          <p class="cv-role">LLM in European and International Business Law</p>
+          <p class="cv-place">Bocconi University, Milan — planned</p>
+        </div>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2026–2027</span>
+        <div>
+          <p class="cv-role">Master of Laws (MLaw)</p>
+          <p class="cv-place">University of St. Gallen (HSG)</p>
+        </div>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2020–2025</span>
+        <div>
+          <p class="cv-role">Dr. des. rer. soc. — Constitutional and Legal History</p>
+          <p class="cv-place">University of St. Gallen (HSG) — defended October 2025</p>
+        </div>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2021–2025</span>
+        <div>
+          <p class="cv-role">Bachelor of Laws (BLaw)</p>
+          <p class="cv-place">University of St. Gallen (HSG)</p>
+        </div>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2017–2019</span>
+        <div>
+          <p class="cv-role">MPhil in Modern European History</p>
+          <p class="cv-place">University of Oxford</p>
+        </div>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2013–2016</span>
+        <div>
+          <p class="cv-role">BA in History and Law</p>
+          <p class="cv-place">University of Zurich (UZH)</p>
+        </div>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2019–2026</span>
+        <div>
+          <p class="cv-role">Scientific Collaborator and Assistant to Prof. Caspar Hirschi</p>
+          <p class="cv-place">University of St. Gallen (HSG), School of Humanities and Social Sciences</p>
+        </div>
+      </div>
+      <div class="cv-item">
+        <span class="cv-year">2017</span>
+        <div>
+          <p class="cv-role">Journalism internships — Ringier (Blick, SonntagsBlick) and SRF (Wirtschaftsredaktion)</p>
+          <p class="cv-place">Zürich</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="writing">
+  <p class="section-label">Writing</p>
+  <h2 class="section-title">Publications and Essays</h2>
+  <div class="writing-grid">
+    <div class="writing-card">
+      <p class="writing-tag">Monograph — forthcoming</p>
+      <h3 class="writing-title">Constitutionalism and the Hierarchy of Norms</h3>
+      <p class="writing-meta">Dr. rer. soc. dissertation, HSG — publication 2026</p>
+    </div>
+    <div class="writing-card">
+      <p class="writing-tag">Feuilleton</p>
+      <h3 class="writing-title">Essays on law, history, and public affairs</h3>
+      <p class="writing-meta">NZZ — Schweizer Monat — Republik</p>
+    </div>
+    <div class="writing-card">
+      <p class="writing-tag">Legislative drafting</p>
+      <h3 class="writing-title">Pa.Iv. 22.482 — Parliamentary Participation in Foreign Policy</h3>
+      <p class="writing-meta">HSG im Bundeshaus, Bern — 2025</p>
+    </div>
+  </div>
+</section>
+
+<div style="border-top: 0.5px solid var(--rule);">
+  <div class="contact-section" id="contact">
+    <p class="section-label" style="text-align:center; margin-bottom: 1rem;">Contact</p>
+    <h2 class="section-title" style="text-align:center;">Get in touch</h2>
+    <a href="mailto:caspar.pfrunder@gmail.com" class="contact-email">caspar.pfrunder@gmail.com</a>
+    <div class="contact-links">
+      <a href="#">LinkedIn</a>
+      <a href="#">SSRN</a>
+      <a href="#">Academia.edu</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Caspar Pfrunder — Jurist and Historian</p>
+  <p>St. Gallen — Zürich — Oxford</p>
+</footer>
+
+</body>
+</html>
